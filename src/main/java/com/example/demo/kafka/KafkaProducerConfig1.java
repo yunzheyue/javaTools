@@ -1,8 +1,7 @@
 package com.example.demo.kafka;
 
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.serialization.ByteArraySerializer;
+import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,9 +20,9 @@ import java.util.Map;
  * @date: Created in 16:40 2020/9/3
  */
 
-@Configuration
-@EnableKafka
-public class KafkaProducerConfig {
+//@Configuration
+//@EnableKafka
+public class KafkaProducerConfig1 {
 
 
     @Value("${kafka.producer.servers}")
@@ -45,17 +44,16 @@ public class KafkaProducerConfig {
         props.put(ProducerConfig.LINGER_MS_CONFIG, linger);
         props.put(ProducerConfig.BUFFER_MEMORY_CONFIG, bufferMemory);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class);
-
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class);
         return props;
     }
 
-    public ProducerFactory<String, String> producerFactory() {
+    public ProducerFactory<String, byte[]> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
     @Bean
-    public KafkaTemplate<String, String> kafkaTemplate() {
-        return new KafkaTemplate<String, String>(producerFactory());
+    public KafkaTemplate<String, byte[]> kafkaTemplate() {
+        return new KafkaTemplate<String, byte[]>(producerFactory());
     }
 }
