@@ -41,7 +41,10 @@ public class RedisLockController {
 
         RedisLock redisLock = new RedisLock(redisTemplate);
         String lockKey = "lock:test";
-
+        /**
+         * CountDownLatch:同步计数器，参数为计数器的初始值，没调用一次countDown()，计数器减1，
+         *                当计数器大于0时，await()方法会阻塞程序继续执行，等于0时不会阻塞。
+         */
         CountDownLatch start = new CountDownLatch(1);
         CountDownLatch threadsLatch = new CountDownLatch(2);
 
