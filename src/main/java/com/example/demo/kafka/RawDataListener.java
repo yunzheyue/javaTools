@@ -35,7 +35,7 @@ public class RawDataListener {
      * 将字节流转化成文件
      * @throws IOException
      */
-    @KafkaListener(topics = {"${kafka.consumer.topic}"})
+//    @KafkaListener(topics = {"${kafka.consumer.topic}"})
     public void listen(ConsumerRecord<?, byte[]> record) {
 //        System.out.println("record.key():" + record.key().toString()+"  ");
         long l = System.currentTimeMillis();

@@ -21,8 +21,8 @@ import java.util.Map;
  * @date: Created in 16:40 2020/9/3
  */
 
-@Configuration
-@EnableKafka
+//@Configuration
+//@EnableKafka
 public class KafkaProducerConfig {
 
 

@@ -24,8 +24,8 @@ import java.util.Map;
  * @description: kafka消费者配置  适合单组消费
  * @date: Created in 16:44 2020/9/3
  */
-@Configuration
-@EnableKafka
+//@Configuration
+//@EnableKafka
 public class KafkaConsumerConfig {
 
     @Value("${kafka.consumer.servers}")

@@ -17,12 +17,12 @@ public class RawDataListener1 extends RawDataListener {
     /**
      * 下面是分组进行监听
      */
-    @KafkaListener(groupId="test-consumer-group1",topics = "${kafka.consumer.topic}", containerFactory="kafkaListenerContainerFactory1")
+//    @KafkaListener(groupId="test-consumer-group1",topics = "${kafka.consumer.topic}", containerFactory="kafkaListenerContainerFactory1")
     public void listen1(ConsumerRecord<?, ?> record) throws IOException {
         String value = (String) record.value();
         System.out.println("组1数据："+value);
     }
-    @KafkaListener(groupId="test-consumer-group2",topics = "${kafka.consumer.topic}",  containerFactory="kafkaListenerContainerFactory2")
+//    @KafkaListener(groupId="test-consumer-group2",topics = "${kafka.consumer.topic}",  containerFactory="kafkaListenerContainerFactory2")
     public void listen2(ConsumerRecord<?, ?> record) throws IOException {
         String value = (String) record.value();
         System.out.println("组2数据："+value);
