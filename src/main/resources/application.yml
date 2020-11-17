@@ -1,0 +1,95 @@
+boots:
+  module:
+    minio:
+      accessKey: minioadmin
+      defaultBkN: default
+      pointCloudBkN: 3dtile
+      secretKey: minioadmin
+      url: http://10.170.58.160:9000
+kafka:
+  consumer:
+    auto:
+      commit:
+        interval: 100
+      offset:
+        reset: latest
+    concurrency: 10
+    enable:
+      auto:
+        commit: true
+    group:
+      id: test-consumer-group
+    servers: 10.170.58.160:9092
+    session:
+      timeout: 20000
+    topic: my-replicated-topic
+  producer:
+    batch:
+      size: 4096
+    buffer:
+      memory: 40960
+    linger: 1
+    retries: 0
+    servers: 10.170.58.160:9092
+    topic: my-replicated-topic
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:com/example/demo/mapper/xml/*.xml
+rocketmq:
+  consumer:
+    consumeMessageBatchMaxSize: 1
+    consumeThreadMax: 64
+    consumeThreadMin: 20
+    groupName: material
+    isOnOff: 'on'
+    namesrvAddr: 10.170.58.8:9876
+    topics: TopicTest~*;
+  producer:
+    groupName: material
+    isOnOff: 'on'
+    maxMessageSize: 4096
+    namesrvAddr: 10.138.40.18:9876
+    retryTimesWhenSendFailed: 2
+    sendMsgTimeout: 3000
+server:
+  port: 8089
+spring:
+  application:
+    name: lbing-test
+  datasource:
+    bn-lbs:
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      driver-class-name: org.postgresql.Driver
+      filters: stat,wall,slf4j
+      initialSize: 10
+      maxActive: 50
+      maxPoolPreparedStatementPerConnectionSize: 50
+      maxWait: 60000
+      minEvictableIdleTimeMillis: 300000
+      minIdle: 10
+      password: postgres
+      poolPreparedStatements: true
+      testOnBorrow: false
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:postgresql://10.138.40.17:5432/material_process_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&stringtype=unspecified
+      useGlobalDataSourceStat: true
+      username: postgres
+      validationQuery: SELECT 1
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    database: 15
+    host: 10.58.176.76
+    jedis:
+      pool:
+        max-active: 200
+        max-idle: 10
+        max-wait:
+        min-idle: 0
+    password: ''
+    port: 6379
+    timeout: 1000
